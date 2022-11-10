@@ -17,15 +17,16 @@
       >
         <div class="avatar-wrapper">
           <img
+            v-if="avatar"
             :src="avatar+'?imageView2/1/w/80/h/80'"
             class="user-avatar"
           >
-          <i class="el-icon-caret-bottom" />
+          <i v-else class="el-icon-user-solid"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              Home
+              Account
             </el-dropdown-item>
           </router-link>
           <a
@@ -33,7 +34,7 @@
             href="https://github.com/webvinabook"
           >
             <el-dropdown-item>
-              Github
+              Help
             </el-dropdown-item>
           </a>
           <el-dropdown-item divided>
@@ -151,15 +152,19 @@ export default class Navbar extends Vue {
           cursor: pointer;
           width: 40px;
           height: 40px;
-          border-radius: 10px;
+          border-radius: 20px;
         }
-
-        .el-icon-caret-bottom {
+        .el-icon-user-solid {
           cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
+          width: 40px;
+          height: 40px;
+          font-size: 25px;
+          color: #ffffff;
+          border-radius: 20px;
+          background-color: #c9c9c9;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }

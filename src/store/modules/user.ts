@@ -48,7 +48,8 @@ class User extends VuexModule implements IUserState {
   public async Login(userInfo: { username: string, password: string }) {
     let { username, password } = userInfo
     username = username.trim()
-    const { data } = await login({ username, password })
+    // const { data } = await login({ username, password })
+    const { data } = { data: { accessToken: 'admin-token' } } // Dummy data
     setToken(data.accessToken)
     this.SET_TOKEN(data.accessToken)
   }
@@ -65,7 +66,22 @@ class User extends VuexModule implements IUserState {
     if (this.token === '') {
       throw Error('GetUserInfo: token is undefined!')
     }
-    const { data } = await getUserInfo({ /* Your params here */ })
+    // const { data } = await getUserInfo({ /* Your params here */ })
+    const { data } = { // Dummy data
+      data: {
+        user: {
+          id: 0,
+          username: 'admin',
+          password: 'any',
+          name: 'Van Nhan',
+          avatar: '',
+          email: 'nhanhv.qt@gmail.com',
+          introduction: 'I am a super administrator',
+          phone: '0942670695',
+          roles: ['admin']
+        }
+      }
+    }
     if (!data) {
       throw Error('Verification failed, please Login again.')
     }
@@ -85,7 +101,7 @@ class User extends VuexModule implements IUserState {
     if (this.token === '') {
       throw Error('LogOut: token is undefined!')
     }
-    await logout()
+    // await logout()
     removeToken()
     this.SET_TOKEN('')
     this.SET_ROLES([])

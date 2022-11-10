@@ -28,12 +28,18 @@ export default new Router({
     {
       path: '/login',
       component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
-      meta: { hidden: true }
+      meta: {
+        title: 'Login - Kiot Web',
+        hidden: true
+      }
     },
     {
       path: '/404',
       component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
-      meta: { hidden: true }
+      meta: {
+        title: '404',
+        hidden: true
+      }
     },
     {
       path: '/',
@@ -53,7 +59,10 @@ export default new Router({
     {
       path: '*',
       redirect: '/404',
-      meta: { hidden: true }
+      meta: {
+        title: '404',
+        hidden: true
+      }
     }
   ]
 })

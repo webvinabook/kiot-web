@@ -53,9 +53,9 @@ export default class Breadcrumb extends Vue {
       item => item.meta && item.meta.title
     )
     const first = matched[0]
-    if (!this.isDashboard(first)) {
+    if (!this.isHome(first)) {
       matched = [
-        { path: '/dashboard', meta: { title: 'Dashboard' } } as unknown as RouteRecord
+        { path: '/home', meta: { title: 'Home' } } as unknown as RouteRecord
       ].concat(matched)
     }
     this.breadcrumbs = matched.filter(item => {
@@ -63,9 +63,9 @@ export default class Breadcrumb extends Vue {
     })
   }
 
-  private isDashboard(route: RouteRecord) {
+  private isHome(route: RouteRecord) {
     const name = route && route.meta && route.meta.title
-    return name === 'Dashboard'
+    return name === 'Home'
   }
 
   private pathCompile(path: string) {

@@ -1,5 +1,6 @@
 /* tslint:disable */
-import './dashboard'
+import './home'
+import './setting'
 import './example'
 import './eye-off'
 import './eye-on'

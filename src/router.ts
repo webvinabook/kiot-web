@@ -44,14 +44,28 @@ export default new Router({
     {
       path: '/',
       component: Layout,
-      redirect: '/dashboard',
+      redirect: '/home',
       children: [
         {
-          path: 'dashboard',
-          component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+          path: 'home',
+          component: () => import(/* webpackChunkName: "home" */ '@/views/home/index.vue'),
           meta: {
-            title: 'Dashboard',
-            icon: 'dashboard'
+            title: 'Home',
+            icon: 'home'
+          }
+        }
+      ]
+    },
+    {
+      path: '/setting',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index.vue'),
+          meta: {
+            title: 'Setting',
+            icon: 'setting'
           }
         }
       ]

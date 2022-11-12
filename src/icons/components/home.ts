@@ -3,7 +3,7 @@
 // @ts-ignore
 import icon from 'vue-svgicon'
 icon.register({
-  'dashboard': {
+  'home': {
     width: 128,
     height: 100,
     viewBox: '0 0 128 100',

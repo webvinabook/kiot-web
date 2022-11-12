@@ -1,9 +1,9 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">
+  <div class="home-container">
+    <div class="home-text">
       name:{{ name }}
     </div>
-    <div class="dashboard-text">
+    <div class="home-text">
       roles:<span
         v-for="role in roles"
         :key="role"
@@ -18,10 +18,10 @@ import Component from 'vue-class-component'
 import { UserModule } from '@/store/modules/user'
 
 @Component({
-  name: 'Dashboard',
+  name: 'Home',
   components: {}
   })
-export default class Dashboard extends Vue {
+export default class Home extends Vue {
   get name() {
     return UserModule.name
   }
@@ -33,7 +33,7 @@ export default class Dashboard extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
+.home {
   &-container {
     margin: 30px;
   }

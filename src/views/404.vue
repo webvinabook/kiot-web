@@ -57,7 +57,7 @@ import Component from 'vue-class-component'
 @Component({
   name: 'Page404',
   components: {}
-  })
+})
 export default class Page404 extends Vue {
   message = '404 Page Not Found'
 }

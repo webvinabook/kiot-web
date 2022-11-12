@@ -20,7 +20,7 @@ import { UserModule } from '@/store/modules/user'
 @Component({
   name: 'Home',
   components: {}
-  })
+})
 export default class Home extends Vue {
   get name() {
     return UserModule.name

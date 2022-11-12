@@ -60,10 +60,10 @@ import Hamburger from '@/components/Hamburger/index.vue'
 @Component({
   name: 'Navbar',
   components: {
-  Breadcrumb,
-  Hamburger
+    Breadcrumb,
+    Hamburger
   }
-  })
+})
 export default class Navbar extends Vue {
   get sidebar() {
     return AppModule.sidebar

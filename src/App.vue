@@ -11,6 +11,6 @@ import Component from 'vue-class-component'
 @Component({
   name: 'App',
   components: {}
-  })
+})
 export default class App extends Vue {}
 </script>

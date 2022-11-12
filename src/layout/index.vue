@@ -25,11 +25,11 @@ import ResizeMixin from './mixin/resize'
 @Component({
   name: 'Layout',
   components: {
-  AppMain,
-  Navbar,
-  Sidebar
+    AppMain,
+    Navbar,
+    Sidebar
   }
-  })
+})
 export default class Layout extends mixins(ResizeMixin) {
   get classObj() {
     return {

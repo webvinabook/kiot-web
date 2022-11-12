@@ -75,7 +75,7 @@ import { isValidUsername } from '@/utils/validate'
 @Component({
   name: 'Login',
   components: {}
-  })
+})
 export default class Login extends Vue {
   private validateUsername = (rule: any, value: string, callback: Function) => {
     if (!isValidUsername(value)) {

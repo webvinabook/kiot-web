@@ -31,7 +31,7 @@ import { RouteRecord, Route } from 'vue-router'
 @Component({
   name: 'Breadcrumb',
   components: {}
-  })
+})
 export default class Breadcrumb extends Vue {
   breadcrumbs: RouteRecord[] = [];
 

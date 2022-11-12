@@ -16,7 +16,7 @@ import Component from 'vue-class-component'
 @Component({
   name: 'AppMain',
   components: {}
-  })
+})
 
 export default class AppMain extends Vue {}
 </script>

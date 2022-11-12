@@ -19,7 +19,7 @@ import { Prop } from 'vue-property-decorator'
 @Component({
   name: 'Hamburger',
   components: {}
-  })
+})
 export default class Hamburger extends Vue {
   @Prop({ default: false }) private isActive!: boolean
 

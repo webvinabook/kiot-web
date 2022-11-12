@@ -20,7 +20,7 @@ import { UserModule } from '@/store/modules/user'
 @Component({
   name: 'Setting',
   components: {}
-  })
+})
 export default class Setting extends Vue {
   get name() {
     return UserModule.name

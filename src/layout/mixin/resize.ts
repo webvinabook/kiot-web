@@ -7,7 +7,7 @@ const WIDTH = 992 // refer to Bootstrap's responsive design
 
 @Component({
   name: 'ResizeMixin'
-  })
+})
 export default class extends Vue {
   get device() {
     return AppModule.device

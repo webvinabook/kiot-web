@@ -11,6 +11,7 @@
       class="breadcrumb-container"
     />
     <div class="right-menu">
+      <lang-select class="right-menu-item hover-effect" />
       <el-dropdown
         class="avatar-container right-menu-item hover-effect"
         trigger="click"
@@ -26,7 +27,7 @@
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              Account
+              {{ $t('item.account') }}
             </el-dropdown-item>
           </router-link>
           <a
@@ -34,14 +35,14 @@
             href="https://github.com/webvinabook"
           >
             <el-dropdown-item>
-              Help
+              {{ $t('helpText.help') }}
             </el-dropdown-item>
           </a>
           <el-dropdown-item divided>
             <span
               style="display:block;"
               @click="logout"
-            >LogOut</span>
+            >{{ $t('action.logOut') }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -56,12 +57,14 @@ import { AppModule } from '@/store/modules/app'
 import { UserModule } from '@/store/modules/user'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
+import LangSelect from '@/components/LangSelect/index.vue'
 
 @Component({
   name: 'Navbar',
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    LangSelect
   }
 })
 export default class Navbar extends Vue {

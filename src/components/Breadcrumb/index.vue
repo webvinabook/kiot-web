@@ -11,11 +11,11 @@
         <span
           v-if="item.redirect === 'noredirect' || index === breadcrumbs.length-1"
           class="no-redirect"
-        >{{ item.meta.title }}</span>
+        >{{ $t('item.' + item.meta.title) }}</span>
         <a
           v-else
           @click.prevent="handleLink(item)"
-        >{{ item.meta.title }}</a>
+        >{{ $t('item.' + item.meta.title) }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -55,7 +55,7 @@ export default class Breadcrumb extends Vue {
     const first = matched[0]
     if (!this.isHome(first)) {
       matched = [
-        { path: '/home', meta: { title: 'Home' } } as unknown as RouteRecord
+        { path: '/', meta: { title: 'home' } } as unknown as RouteRecord
       ].concat(matched)
     }
     this.breadcrumbs = matched.filter(item => {
@@ -65,7 +65,7 @@ export default class Breadcrumb extends Vue {
 
   private isHome(route: RouteRecord) {
     const name = route && route.meta && route.meta.title
-    return name === 'Home'
+    return name === this.$t('item.home')
   }
 
   private pathCompile(path: string) {

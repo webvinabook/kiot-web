@@ -9,8 +9,12 @@
       label-position="left"
     >
       <div class="title-container">
+        <svg-icon
+          name="logo"
+          class="logo-webvinabook"
+        />
         <h3 class="title">
-          Login Form
+          {{ $t('item.titleLoginForm') }}
         </h3>
       </div>
 
@@ -24,7 +28,7 @@
           name="username"
           type="text"
           autocomplete="on"
-          placeholder="username"
+          :placeholder="$t('text.username')"
         />
       </el-form-item>
 
@@ -37,7 +41,7 @@
           ref="password"
           v-model="loginForm.password"
           :type="passwordType"
-          placeholder="password"
+          :placeholder="$t('text.password')"
           name="password"
           autocomplete="on"
           @keyup.enter.native="handleLogin"
@@ -56,8 +60,9 @@
         style="width:100%; margin-bottom:30px;"
         @click.native.prevent="handleLogin"
       >
-        Sign in
+        {{ $t('action.signIn') }}
       </el-button>
+      <lang-select class="set-language" />
     </el-form>
   </div>
 </template>
@@ -71,10 +76,13 @@ import { Dictionary } from 'vue-router/types/router'
 import { Form as ElForm, Input } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
 import { isValidUsername } from '@/utils/validate'
+import LangSelect from '@/components/LangSelect/index.vue'
 
 @Component({
   name: 'Login',
-  components: {}
+  components: {
+    LangSelect
+  }
 })
 export default class Login extends Vue {
   private validateUsername = (rule: any, value: string, callback: Function) => {
@@ -219,9 +227,18 @@ export default class Login extends Vue {
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 100px 35px 0;
     margin: 0 auto;
     overflow: hidden;
+
+    .set-language {
+      color: #fff;
+      position: absolute;
+      font-size: 18px;
+      right: 35px;
+      bottom: 0px;
+      cursor: pointer;
+    }
   }
 
   .tips {
@@ -246,6 +263,9 @@ export default class Login extends Vue {
 
   .title-container {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .title {
       font-size: 26px;
@@ -253,6 +273,10 @@ export default class Login extends Vue {
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
+    }
+
+    .logo-webvinabook {
+      font-size: 130px;
     }
   }
 

@@ -37,7 +37,7 @@ export default new Router({
       path: '/404',
       component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
       meta: {
-        title: '404',
+        title: 'page404',
         hidden: true
       }
     },
@@ -49,8 +49,9 @@ export default new Router({
         {
           path: 'home',
           component: () => import(/* webpackChunkName: "home" */ '@/views/home/index.vue'),
+          name: 'Home',
           meta: {
-            title: 'Home',
+            title: 'home',
             icon: 'home'
           }
         }
@@ -63,8 +64,9 @@ export default new Router({
         {
           path: 'index',
           component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index.vue'),
+          name: 'Setting',
           meta: {
-            title: 'Setting',
+            title: 'setting',
             icon: 'setting'
           }
         }
@@ -74,7 +76,7 @@ export default new Router({
       path: '*',
       redirect: '/404',
       meta: {
-        title: '404',
+        title: 'page404',
         hidden: true
       }
     }

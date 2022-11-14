@@ -6,6 +6,7 @@ import { Route } from 'vue-router'
 import { UserModule } from '@/store/modules/user'
 import i18n from './lang'
 import settings from './settings'
+import { PermissionModule } from './store/modules/permission'
 
 NProgress.configure({ showSpinner: false })
 
@@ -34,15 +35,23 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
       // Check whether the user has obtained his permission roles
       if (UserModule.roles.length === 0) {
         try {
-          // Get user info, including roles
+          // Note: roles must be a object array! such as: ['admin'] or ['developer', 'editor']
           await UserModule.GetUserInfo()
+          const roles = UserModule.roles
+          // Generate accessible routes map based on role
+          PermissionModule.GenerateRoutes(roles)
+          // Dynamically add accessible routes
+          PermissionModule.dynamicRoutes.forEach(route => {
+            router.addRoute(route)
+          })
+          // Hack: ensure addRoutes is complete
           // Set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
         } catch (err: any) {
           // Remove token and redirect to login page
           UserModule.ResetToken()
           Message.error(err || 'Has Error')
-          next(`/login?redirect=${to.path}`)
+          next('/login?redirect=%2Fhome')
           NProgress.done()
         }
       } else {

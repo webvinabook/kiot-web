@@ -2,6 +2,7 @@ export default {
   item: {
     page404: '404',
     home: 'Trang chủ',
+    login: 'Đăng nhập',
     setting: 'Cài đặt',
     account: 'Tài khoản',
     titleLoginForm: 'Kiot Vinabook'

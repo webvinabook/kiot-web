@@ -11,11 +11,27 @@
         <span
           v-if="item.redirect === 'noredirect' || index === breadcrumbs.length-1"
           class="no-redirect"
-        >{{ $t('item.' + item.meta.title) }}</span>
+        >
+          <div v-if="item.meta.title === 'home'">
+            <svg-icon
+              name="logo"
+              class="logo-home"
+            />
+          </div>
+          <span v-else>{{ $t('item.' + item.meta.title) }}</span>
+        </span>
         <a
           v-else
           @click.prevent="handleLink(item)"
-        >{{ $t('item.' + item.meta.title) }}</a>
+        >
+          <div v-if="item.meta.title === 'home'">
+            <svg-icon
+              name="logo"
+              class="logo-home"
+            />
+          </div>
+          <span v-else>{{ $t('item.' + item.meta.title) }}</span>
+        </a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
@@ -55,7 +71,7 @@ export default class Breadcrumb extends Vue {
     const first = matched[0]
     if (!this.isHome(first)) {
       matched = [
-        { path: '/', meta: { title: 'home' } } as unknown as RouteRecord
+        { path: '/home', meta: { title: 'home' } } as unknown as RouteRecord
       ].concat(matched)
     }
     this.breadcrumbs = matched.filter(item => {
@@ -64,8 +80,11 @@ export default class Breadcrumb extends Vue {
   }
 
   private isHome(route: RouteRecord) {
-    const name = route && route.meta && route.meta.title
-    return name === this.$t('item.home')
+    const name = route && route.name
+    if (!name) {
+      return false
+    }
+    return name.trim().toLocaleLowerCase() === 'Home'.toLocaleLowerCase()
   }
 
   private pathCompile(path: string) {
@@ -74,13 +93,17 @@ export default class Breadcrumb extends Vue {
     return toPath(params)
   }
 
-  handleLink(item: any) {
+  private handleLink(item: any) {
     const { redirect, path } = item
     if (redirect) {
-      this.$router.push(redirect)
+      this.$router.push(redirect).catch(err => {
+        console.warn(err)
+      })
       return
     }
-    this.$router.push(this.pathCompile(path))
+    this.$router.push(this.pathCompile(path)).catch(err => {
+      console.warn(err)
+    })
   }
 }
 </script>
@@ -100,6 +123,12 @@ export default class Breadcrumb extends Vue {
   .no-redirect {
     color: #97a8be;
     cursor: text;
+  }
+
+  .logo-home {
+    font-size: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
   }
 }
 </style>

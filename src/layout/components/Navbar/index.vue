@@ -86,7 +86,8 @@ export default class Navbar extends Vue {
 
   async logout() {
     await UserModule.LogOut()
-    this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    this.$router.push('/login?redirect=%2Fhome')
+    // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
   }
 }
 </script>

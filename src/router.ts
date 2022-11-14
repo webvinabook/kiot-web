@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter, { RouteConfig } from 'vue-router'
 import Layout from '@/layout/index.vue'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 /*
   redirect:                      if set to 'noredirect', no redirect action will be trigger when clicking the breadcrumb
@@ -14,8 +14,75 @@ Vue.use(Router)
   }
 */
 
-export default new Router({
-  // mode: 'history',  // Enable this if you need.
+/**
+  ConstantRoutes
+  a base page that does not have permission requirements
+  all roles can be accessed
+*/
+export const constantRoutes: RouteConfig[] = [
+  {
+    path: '/login',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
+    meta: { hidden: true }
+  },
+  {
+    path: '/404',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
+    meta: {
+      title: 'page404',
+      hidden: true
+    }
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/home',
+    children: [
+      {
+        path: 'home',
+        component: () => import(/* webpackChunkName: "home" */ '@/views/home/index.vue'),
+        name: 'Home',
+        meta: {
+          title: 'home',
+          icon: 'home',
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/setting',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index.vue'),
+        name: 'Setting',
+        meta: {
+          title: 'setting',
+          icon: 'setting'
+        }
+      }
+    ]
+  }
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+*/
+export const asyncRoutes: RouteConfig[] = [
+  {
+    path: '*',
+    redirect: '/404',
+    meta: {
+      title: 'page404',
+      hidden: true
+    }
+  }
+]
+
+const createRouter = () => new VueRouter({
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) {
       return savedPosition
@@ -24,61 +91,14 @@ export default new Router({
     }
   },
   base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/login',
-      component: () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue'),
-      meta: {
-        title: 'Login - Kiot Web',
-        hidden: true
-      }
-    },
-    {
-      path: '/404',
-      component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
-      meta: {
-        title: 'page404',
-        hidden: true
-      }
-    },
-    {
-      path: '/',
-      component: Layout,
-      redirect: '/home',
-      children: [
-        {
-          path: 'home',
-          component: () => import(/* webpackChunkName: "home" */ '@/views/home/index.vue'),
-          name: 'Home',
-          meta: {
-            title: 'home',
-            icon: 'home'
-          }
-        }
-      ]
-    },
-    {
-      path: '/setting',
-      component: Layout,
-      children: [
-        {
-          path: 'index',
-          component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index.vue'),
-          name: 'Setting',
-          meta: {
-            title: 'setting',
-            icon: 'setting'
-          }
-        }
-      ]
-    },
-    {
-      path: '*',
-      redirect: '/404',
-      meta: {
-        title: 'page404',
-        hidden: true
-      }
-    }
-  ]
+  routes: constantRoutes
 })
+
+const router = createRouter()
+
+export function resetRouter() {
+  const newRouter = createRouter();
+  (router as any).matcher = (newRouter as any).matcher // reset router
+}
+
+export default router

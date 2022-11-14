@@ -2,6 +2,7 @@ export default {
   item: {
     page404: '404',
     home: 'Home',
+    login: 'Login',
     setting: 'Setting',
     account: 'Account',
     titleLoginForm: 'Kiot Vinabook'

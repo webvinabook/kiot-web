@@ -2,6 +2,7 @@ import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-dec
 import { login, logout, getUserInfo } from '@/api/users'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
 import store from '@/store'
+import { dataToken, IUser, user } from './dummyData'
 
 export interface IUserState {
   token: string
@@ -49,7 +50,16 @@ class User extends VuexModule implements IUserState {
     let { username, password } = userInfo
     username = username.trim()
     // const { data } = await login({ username, password })
-    const { data } = { data: { accessToken: 'admin-token' } } // Dummy data
+
+    // Start dummy data
+    let data: any = {}
+    if (username === 'admin') {
+      data = dataToken.admin
+    } else {
+      data = dataToken.user
+    }
+    // End dummy data
+
     setToken(data.accessToken)
     this.SET_TOKEN(data.accessToken)
   }
@@ -67,25 +77,20 @@ class User extends VuexModule implements IUserState {
       throw Error('GetUserInfo: token is undefined!')
     }
     // const { data } = await getUserInfo({ /* Your params here */ })
-    const { data } = { // Dummy data
-      data: {
-        user: {
-          id: 0,
-          username: 'admin',
-          password: 'any',
-          name: 'Van Nhan',
-          avatar: '',
-          email: 'nhanhv.qt@gmail.com',
-          introduction: 'I am a super administrator',
-          phone: '0942670695',
-          roles: ['admin']
-        }
-      }
+
+    // Start dummy data
+    let data: IUser = {} as IUser
+    if (this.token && this.token === 'admin-token') {
+      data = user.find(item => item.username === 'admin') as IUser
+    } else {
+      data = user.find(item => item.username === 'user') as IUser
     }
+    // End dummy data
+
     if (!data) {
       throw Error('Verification failed, please Login again.')
     }
-    const { roles, name, avatar, introduction } = data.user
+    const { roles, name, avatar, introduction } = data
     // roles must be a non-empty array
     if (!roles || roles.length <= 0) {
       throw Error('GetUserInfo: roles must be a non-null array!')

@@ -1,5 +1,5 @@
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators'
-import { login, logout, getUserInfo } from '@/api/users'
+// import { login, logout, getUserInfo } from '@/api/users'
 import { getToken, setToken, removeToken } from '@/utils/cookies'
 import store from '@/store'
 import { dataToken, IUser, user } from './dummyData'
@@ -53,7 +53,7 @@ class User extends VuexModule implements IUserState {
 
     // Start dummy data
     let data: any = {}
-    if (username === 'admin') {
+    if (username === 'admin' && password) {
       data = dataToken.admin
     } else {
       data = dataToken.user

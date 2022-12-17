@@ -87,7 +87,7 @@ import LangSelect from '@/components/LangSelect/index.vue'
 export default class Login extends Vue {
   private validateUsername = (rule: any, value: string, callback: Function) => {
     if (!isValidUsername(value)) {
-      callback(new Error('Please enter the correct user name'))
+      callback(new Error(this.$t('message.validateUsername') as string))
     } else {
       callback()
     }
@@ -95,7 +95,7 @@ export default class Login extends Vue {
 
   private validatePassword = (rule: any, value: string, callback: Function) => {
     if (value.length < 6) {
-      callback(new Error('The password can not be less than 6 digits'))
+      callback(new Error(this.$t('message.validatePassword') as string))
     } else {
       callback()
     }

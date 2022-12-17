@@ -30,5 +30,9 @@ export default {
   helpText: {
     changeLanguageTips: 'Switch Language Success',
     help: 'Help'
+  },
+  message: {
+    validatePassword: 'The password can not be less than 6 digits',
+    validateUsername: 'Please enter the correct user name'
   }
 }

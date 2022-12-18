@@ -6,10 +6,14 @@
       class="hamburger-container"
       @toggle-click="toggleSideBar"
     />
-    <breadcrumb
+    <!-- <breadcrumb
       id="breadcrumb-container"
       class="breadcrumb-container"
-    />
+    /> -->
+    <div class="introduction">
+      <div class="notification-item"><strong>{{ introduction.name }}</strong></div>
+      <div class="animation notification-item" v-html="introduction.introduction"></div>
+    </div>
     <div class="right-menu">
       <lang-select class="right-menu-item hover-effect" />
       <el-dropdown
@@ -38,6 +42,11 @@
               {{ $t('helpText.help') }}
             </el-dropdown-item>
           </a>
+          <router-link to="/setting">
+            <el-dropdown-item>
+              {{ $t('item.setting') }}
+            </el-dropdown-item>
+          </router-link>
           <el-dropdown-item divided>
             <span
               style="display:block;"
@@ -80,6 +89,10 @@ export default class Navbar extends Vue {
     return UserModule.avatar
   }
 
+  get introduction() {
+    return { name: UserModule.name, introduction: UserModule.introduction }
+  }
+
   toggleSideBar() {
     AppModule.ToggleSideBar(false)
   }
@@ -99,6 +112,7 @@ export default class Navbar extends Vue {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  display: flex;
 
   .hamburger-container {
     line-height: 46px;
@@ -170,6 +184,34 @@ export default class Navbar extends Vue {
           justify-content: center;
           align-items: center;
         }
+      }
+    }
+  }
+
+  @-webkit-keyframes scrollAnimationNotification{
+    0%{-webkit-transform:translateX(120%);
+    transform:translateX(120%)}to{-webkit-transform:translateX(-20%);
+    transform:translateX(-20%)}
+  }
+  @keyframes scrollAnimationNotification{
+    0%{-webkit-transform:translateX(120%);
+    transform:translateX(120%)}to{-webkit-transform:translateX(-20%);
+    transform:translateX(-20%)}
+  }
+  .introduction {
+    flex: 1;
+    overflow: hidden;
+    padding: 10px 0;
+    margin: 0 20px;
+    .animation {
+      animation: scrollAnimationNotification 17s linear infinite;
+    }
+    .notification-item {
+      font-size: 13px;
+      height: 50%;
+      box-sizing: border-box;
+      ::v-deep a {
+        color: #0F93FF;
       }
     }
   }

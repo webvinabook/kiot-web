@@ -30,5 +30,9 @@ export default {
   helpText: {
     changeLanguageTips: 'Chuyển đổi ngôn ngữ thành công',
     help: 'Trợ giúp'
+  },
+  message: {
+    validatePassword: 'Mật khẩu không thể ít hơn 6 chữ số',
+    validateUsername: 'Vui lòng nhập đúng tên người dùng'
   }
 }

@@ -55,7 +55,7 @@ export const constantRoutes: RouteConfig[] = [
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '',
         component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index.vue'),
         name: 'Setting',
         meta: {

@@ -34,12 +34,12 @@ export const constantRoutes: RouteConfig[] = [
     }
   },
   {
-    path: '/',
+    path: '/home',
     component: Layout,
     redirect: '/home',
     children: [
       {
-        path: 'home',
+        path: '',
         component: () => import(/* webpackChunkName: "home" */ '@/views/home/index.vue'),
         name: 'Home',
         meta: {
@@ -51,16 +51,187 @@ export const constantRoutes: RouteConfig[] = [
     ]
   },
   {
-    path: '/setting',
+    path: '/business',
     component: Layout,
+    meta: {
+      title: 'business',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'shops',
+        component: () => import(/* webpackChunkName: "shops" */ '@/views/shops/index.vue'),
+        name: 'Shops',
+        meta: {
+          title: 'shops',
+          icon: 'shop'
+        }
+      },
+      {
+        path: 'products',
+        component: () => import(/* webpackChunkName: "products" */ '@/views/products/index.vue'),
+        name: 'Products',
+        meta: {
+          title: 'products',
+          icon: 'product'
+        }
+      },
+      {
+        path: 'categories',
+        component: () => import(/* webpackChunkName: "categories" */ '@/views/categories/index.vue'),
+        name: 'Categories',
+        meta: {
+          title: 'categories',
+          icon: 'categories'
+        }
+      },
+      {
+        path: 'order',
+        component: () => import(/* webpackChunkName: "order" */ '@/views/order/index.vue'),
+        name: 'Order',
+        meta: {
+          title: 'order',
+          icon: 'order'
+        }
+      }
+    ]
+  },
+  {
+    path: '/partner',
+    component: Layout,
+    meta: {
+      title: 'partner',
+      icon: 'partner'
+    },
+    children: [
+      {
+        path: 'supplier',
+        component: () => import(/* webpackChunkName: "supplier" */ '@/views/supplier/index.vue'),
+        name: 'Supplier',
+        meta: {
+          title: 'supplier',
+          icon: 'supplier'
+        }
+      },
+      {
+        path: 'customer',
+        component: () => import(/* webpackChunkName: "customer" */ '@/views/customer/index.vue'),
+        name: 'Customer',
+        meta: {
+          title: 'customer',
+          icon: 'customer'
+        }
+      }
+    ]
+  },
+  {
+    path: '/statistic',
+    component: Layout,
+    meta: {
+      title: 'statistic',
+      icon: 'statistic'
+    },
+    children: [
+      {
+        path: 'chart',
+        component: () => import(/* webpackChunkName: "chart" */ '@/views/chart/index.vue'),
+        name: 'Chart',
+        meta: {
+          title: 'chart',
+          icon: 'chart'
+        }
+      },
+      {
+        path: 'export',
+        component: () => import(/* webpackChunkName: "export" */ '@/views/export/index.vue'),
+        name: 'Export',
+        meta: {
+          title: 'export',
+          icon: 'excel'
+        }
+      }
+    ]
+  },
+  {
+    path: '/hrm',
+    component: Layout,
+    meta: {
+      title: 'hrm',
+      icon: 'peoples'
+    },
     children: [
       {
         path: '',
-        component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/index.vue'),
-        name: 'Setting',
+        component: () => import(/* webpackChunkName: "personnel" */ '@/views/personnel/index.vue'),
+        name: 'Personnel',
         meta: {
-          title: 'setting',
-          icon: 'setting'
+          title: 'personnel',
+          icon: 'user'
+        }
+      },
+      {
+        path: 'timekeeping',
+        component: () => import(/* webpackChunkName: "timekeeping" */ '@/views/timekeeping/index.vue'),
+        name: 'Timekeeping',
+        meta: {
+          title: 'timekeeping',
+          icon: 'calendar'
+        }
+      },
+      {
+        path: 'task',
+        component: () => import(/* webpackChunkName: "task" */ '@/views/task/index.vue'),
+        name: 'Task',
+        meta: {
+          title: 'task',
+          icon: 'task'
+        }
+      },
+      {
+        path: 'request',
+        component: () => import(/* webpackChunkName: "request" */ '@/views/request/index.vue'),
+        name: 'Request',
+        meta: {
+          title: 'request',
+          icon: 'form'
+        }
+      }
+    ]
+  },
+  {
+    path: '/setting',
+    component: Layout,
+    meta: {
+      title: 'setting',
+      icon: 'setting'
+    },
+    children: [
+      {
+        path: 'account',
+        component: () => import(/* webpackChunkName: "account" */ '@/views/account/index.vue'),
+        name: 'Account',
+        meta: {
+          title: 'account',
+          hidden: true,
+          icon: 'user'
+        }
+      },
+      {
+        path: 'user',
+        component: () => import(/* webpackChunkName: "user" */ '@/views/user/index.vue'),
+        name: 'Users',
+        meta: {
+          title: 'user',
+          icon: 'user'
+        }
+      },
+      {
+        path: 'permission',
+        component: () => import(/* webpackChunkName: "permission" */ '@/views/permission/index.vue'),
+        name: 'Permission',
+        meta: {
+          title: 'permission',
+          icon: 'lock'
         }
       }
     ]

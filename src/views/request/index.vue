@@ -1,9 +1,9 @@
 <template>
-  <div class="setting-container">
-    <div class="setting-text">
+  <div class="request-container">
+    <div class="request-text">
       name:{{ name }}
     </div>
-    <div class="setting-text">
+    <div class="request-text">
       roles:<span
         v-for="role in roles"
         :key="role"
@@ -18,7 +18,7 @@ import Component from 'vue-class-component'
 import { UserModule } from '@/store/modules/user'
 
 @Component({
-  name: 'Setting',
+  name: 'Request',
   components: {}
 })
 export default class Setting extends Vue {
@@ -33,7 +33,7 @@ export default class Setting extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.setting {
+.request {
   &-container {
     margin: 30px;
   }

@@ -29,7 +29,7 @@
           <i v-else class="el-icon-user-solid"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
+          <router-link to="/setting/account">
             <el-dropdown-item>
               {{ $t('item.account') }}
             </el-dropdown-item>
@@ -42,11 +42,6 @@
               {{ $t('helpText.help') }}
             </el-dropdown-item>
           </a>
-          <router-link to="/setting">
-            <el-dropdown-item>
-              {{ $t('item.setting') }}
-            </el-dropdown-item>
-          </router-link>
           <el-dropdown-item divided>
             <span
               style="display:block;"

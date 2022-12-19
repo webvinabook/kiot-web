@@ -1,0 +1,12 @@
+/* eslint-disable */
+/* tslint:disable */
+// @ts-ignore
+import icon from 'vue-svgicon'
+icon.register({
+  'chart': {
+    width: 1024,
+    height: 1024,
+    viewBox: '0 0 1024 1024',
+    data: '<path d="M85.504 938.688H1024V1024H0v-85.312h0.192V0h85.312v938.688zM128 723.328l212.736-271.552 303.424 155.52L990.912 256v632.64H128v-165.312z" p-id="5566"></path>'
+  }
+})

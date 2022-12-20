@@ -51,7 +51,7 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
           // Remove token and redirect to login page
           UserModule.ResetToken()
           Message.error(err || 'Has Error')
-          next('/login?redirect=%2Fhome')
+          next(`/login?redirect=${to.path}`)
           NProgress.done()
         }
       } else {

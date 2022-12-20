@@ -34,12 +34,12 @@ export const constantRoutes: RouteConfig[] = [
     }
   },
   {
-    path: '/home',
+    path: '/',
     component: Layout,
     redirect: '/home',
     children: [
       {
-        path: '',
+        path: 'home',
         component: () => import(/* webpackChunkName: "home" */ '@/views/home/index.vue'),
         name: 'Home',
         meta: {

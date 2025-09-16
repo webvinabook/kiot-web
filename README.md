@@ -1,4 +1,4 @@
-# Kiot-web Vinabook
+# Kiot-web
 
 ![kiot-web](https://github.com/webvinabook/kiot-web/assets/80185529/904d9bf7-cce3-4708-a948-6accb8237cda)
 
@@ -6,7 +6,7 @@ Name: <strong>KiotWeb</strong><br/>
 Version (1.0.0): 1.0.0<br/>
 Description: Create Kiot App<br/>
 Vue version: v2.6.12<br/>
-Author: <a href="https://webvinabook.com/">webvinabook.com</a><br/>
+Author: <a href="https://ite-software.com/">Van Nhan</a><br/>
 License (MIT): MIT
 
 ## Request:</br> 
